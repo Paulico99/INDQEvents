@@ -5,10 +5,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # Tools
 
 Bootstrap<br>
-Angular 6
-Mapbox
-Source Tree
-Git
+Angular 6<br>
+Mapbox<br>
+Source Tree<br>
+Git<br>
+
 
 ## Development server
 
