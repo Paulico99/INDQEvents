@@ -2,9 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
 
-#Tools
+# Tools
 
-Bootstrap
+Bootstrap<br>
 Angular 6
 Mapbox
 Source Tree
