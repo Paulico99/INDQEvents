@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    height: 100vh;
+    background-image: url(../src/assets/media/background.jpg);
+    background-repeat: no-repeat;
+}
+.custom-file-input:lang(en)~.custom-file-label::after{
+    content: "Seleccionar"!important;
+}
+.logo{
+    background-image: url(../src/assets/media/INDQ.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 20%;
+    position: relative;
+}
+.titleStyle{
+    background: #006cac;
+    color: #ffff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.labelStyle{
+    border-left: 2.4px solid #006cac;
+    padding-left: 1rem;
+}

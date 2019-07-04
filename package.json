@@ -20,9 +20,11 @@
     "@angular/platform-browser": "^6.0.2",
     "@angular/platform-browser-dynamic": "^6.0.2",
     "@angular/router": "^6.0.2",
+    "@auth0/angular-jwt": "^2.1.1",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.3.1",
+    "mapbox-gl": "^1.0.0",
     "popper.js": "^1.15.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

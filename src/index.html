@@ -2,13 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>PruebaIndq</title>
+  <title>Events</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+ 
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.4/mapbox-gl-geocoder.css' type='text/css' /> 
 </head>
 <body>
   <app-root></app-root>
 </body>
+
+<script>
+    $(document).ready(function() {
+      $(".dropdown-toggle").dropdown();
+  });
+</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.4/mapbox-gl-geocoder.min.js'></script>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoicGF1bHNvdG8iLCJhIjoiY2p4bnNuMnZlMDF1MTNjdDJ4MGF5bmZwOSJ9.zks3UsDVnueAhcHgzNM09A';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [-108.98025, 25.8076967],
+    zoom: 12
+    });
+
+    var marker = new mapboxgl.Marker({
+    draggable: true
+    }).setLngLat([-108.98025, 25.8076967]).addTo(map);
+    
+    var geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      placeholder: 'Buscar dirección',
+      bbox: [-125.04773013010984,13.362371876574812,-67.17510327073529,49.341030255796454]
+    });
+
+    map.addControl(geocoder);
+    map.on('click', addMarker);
+    map.on('mouseup', setLngLatInputs);
+
+    geocoder.on('result', function(ev) {
+        marker.setLngLat(ev.result.center);
+        setLngLatInputs();
+      });
+
+    function addMarker(e){
+      marker.setLngLat(e.lngLat);
+      setLngLatInputs();
+    }
+
+    function setLngLatInputs() {
+      var lngLat = marker.getLngLat();
+      var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lngLat.lng + "," + lngLat.lat + ".json?access_token=" + mapboxgl.accessToken;
+      $.get(url, function(data){
+          var location = data.features[0].place_name;
+          $("input[formControlName=location]").val(location); 
+      });
+    }
+
+</script>
 </html>

@@ -1,3 +1,79 @@
-<p>
-  users works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body class="p-5 d-flex flex-column justify-content-center">
+    <div class="container w-50 p-4" style="box-shadow: 0px 0px 10px 0px gray;background: #FFFF;">
+        <h1 class="titleStyle text-center d-flex justify-content-center align-items-center"> <img src="../../../../assets/media/INDQ.jpg" style="width: 10%;">Events</h1>
+        <p class="text-center" style="font-weight: 600;">Registro</p>
+        <form [formGroup]="RegisterUser" class="was-validated" (submit)="addUser()">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                  <label class="labelStyle" for="inputname">Nombres</label>
+                  <input type="text" class="form-control " id="inputname" formControlName="firstName" pattern="[a-zA-Z]+" ng-pattern-restrict placeholder="Escribir aqui" required>
+                  <div class="invalid-feedback">
+                      Por favor de ingresar correctamente su nombre
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label class="labelStyle" for="inputemail">Email</label>
+                  <input type="email" class="form-control" id="inputemail" formControlName="email" pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" ng-pattern-restrict placeholder="Escribir aqui" required>
+                  <div class="invalid-feedback">
+                      Por favor de ingresar correctamente su correo electronico
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="labelStyle" for="inputemail">Contrasena</label>
+                  <input type="password" class="form-control" id="inputpass" formControlName="password"  minlength="8" placeholder="Escribir aqui" required>
+                  <div class="invalid-feedback">
+                      Por favor de ingresar correctamente su contraseña
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="labelStyle" for="inputlast">Apellidos</label>
+                    <input type="text" class="form-control" id="inputlast" formControlName="lastName" pattern="[a-zA-Z]+" ng-pattern-restrict placeholder="Escribir aqui" required>
+                    <div class="invalid-feedback">
+                        Por favor de ingresar correctamente su apellido
+                    </div>
+                  </div>
+                   <div class="form-group" style="margin-bottom: 2rem;">
+                      <label class="labelStyle" for="inputgenero">Genero</label>
+                      <div class="d-flex justify-content-around" >
+                          <label class="form-check-label" for="exampleRadios1">
+                              <input class="form-check-input" type="radio"  id="exampleRadios1" formControlName="gender" value="Female" style="margin-left: -2rem;" required>
+                              Femenino
+                          </label>
+                          <label class="form-check-label" for="exampleRadios2">
+                              <input class="form-check-input" type="radio"  id="exampleRadios2" formControlName="gender" value="Male" style="margin-left: -2rem;" required>
+                            Masculino
+                          </label>                          
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="labelStyle" for="inputpass2">Confirmar Contrasena</label>
+                    <input type="password" class="form-control" id="inputpass2"  formControlName="confirmPassword" (keyup)="checkPassSame()" minlength="8"  placeholder="Escribir aqui" required>
+                    <div *ngIf="this.RegisterUser.controls.password.value == this.RegisterUser.controls.confirmPassword.value">
+                        <small class="errorMsg">
+                          {{passmsg}}
+                        </small>
+                    </div> 
+                  
+                  </div>
+            </div>
+
+          </div>
+              <div class="d-flex flex-column justify-content-center align-items-center">
+                  <button type="submit" class="btn btn-primary" [disabled]="RegisterUser.invalid || this.RegisterUser.controls.password.value !== this.RegisterUser.controls.confirmPassword.value" style="width:30%;">Confirmar</button>
+                  <a routerLink="/login" class="mt-5" >¿Ya eres miembro? Inicio de sesion</a>
+              </div>
+        </form>
+    </div>
+</body>
+
+</html>
